@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Acessível - Deficiência Visual e TEA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Atalho de acessibilidade para navegação por teclado -->
+  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
+
+  <header role="banner">
+    <div class="container">
+      <h1>Portal Inclusivo</h1>
+      <nav aria-label="Navegação Principal">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal" role="main">
+    <div class="container">
+      
+      <!-- Controles de Acessibilidade -->
+      <section class="painel-acessibilidade" aria-label="Ferramentas de Acessibilidade">
+        <h2>Ajustes de Leitura</h2>
+        <div class="controles">
+          <button id="btn-contraste" onclick="alternarContraste()" aria-pressed="false">Modo Alto Contraste</button>
+          <button onclick="alterarTamanhoTexto(1)">Aumentar Texto (+)</button>
+          <button onclick="alterarTamanhoTexto(-1)">Diminuir Texto (-)</button>
+        </div>
+      </section>
+
+      <!-- Conteúdo com Layout Estável -->
+      <article class="card">
+        <h2>Design Adaptado</h2>
+        <p>Esta página utiliza cores neutras e suaves por padrão, evitando sobrecarga sensorial para pessoas no Espectro Autista (TEA).</p>
+        <p>A estrutura semântica garante suporte total a leitores de tela, e os controles no topo permitem atirar o alto contraste instantaneamente para quem possui baixa visão.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 - Web Acessível para Todos</p>
+    </div>
+  </footer>
+
+  <script>
+    function alternarContraste() {
+      const body = document.body;
+      const btn = document.getElementById('btn-contraste');
+      body.classList.toggle('alto-contraste');
+      const ativo = body.classList.contains('alto-contraste');
+      btn.setAttribute('aria-pressed', ativo);
+    }
+
+    let percentualTexto = 100;
+    function alterarTamanhoTexto(delta) {
+      percentualTexto += delta * 10;
+      if (percentualTexto < 90) percentualTexto = 90;
+      if (percentualTexto > 150) percentualTexto = 150;
+      document.documentElement.style.fontSize = percentualTexto + '%';
+    }
+  </script>
+</body>
+</html>
